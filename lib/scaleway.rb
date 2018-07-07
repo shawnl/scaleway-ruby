@@ -266,16 +266,17 @@ module Scaleway
           :name => 'default',
           :commercial_type => 'VC1S',
           :image => Proc.new { |params, body|
-            if body[:commercial_type] == 'C1'
+            if body[:commercial_type] == 'C1' || body[:commercial_type].start_with?("ARM64")
               arch = 'arm'
             else
               arch = 'x86_64'
             end
             Scaleway::Marketplace.find_local_image_by_name(
-              'Ubuntu Xenial', arch: arch).id
+              'Debian Sid', arch: arch).id
           },
           :volumes => {},
           :organization => Proc.new { Scaleway.organization },
+          :ipv6 => true
         }
       }
     },
