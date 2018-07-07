@@ -264,7 +264,7 @@ module Scaleway
         :endpoint => Proc.new { "#{Scaleway.compute_endpoint}/servers" },
         :default_params => {
           :name => 'default',
-          :commercial_type => 'VC1S',
+          :commercial_type => 'ARM64-2GB',
           :image => Proc.new { |params, body|
             if body[:commercial_type] == 'C1' || body[:commercial_type].start_with?("ARM64")
               arch = 'arm'
